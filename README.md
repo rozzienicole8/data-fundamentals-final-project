@@ -1,4 +1,4 @@
-# My Event Ticcketing Database SQL Project
+# My Event Ticketing System SQL Project
 
 <a name="readme-top"></a>
 
