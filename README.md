@@ -1,44 +1,81 @@
-# My Event Ticketing System SQL Project
-
-<a name="readme-top"></a>
-
 <!-- TABLE OF CONTENTS -->
 
 # 📗 Table of Contents
 
-- [My SQL Project](#about-project)
-- [📗 Table of Contents](#-table-of-contents)
-- [📖 My SQL Project](#about-project)
-  - [🛠 Built With ](#-built-with-)
-    - [Tech Stack ](#tech-stack-)
-    - [Key Features ](#key-features-)
-  - [💻 Getting Started ](#-getting-started-)
-    - [Prerequisites](#prerequisites)
-    - [Setup](#setup)
-    - [Usage](#usage)
-  - [👥 Authors ](#-authors-)
-  - [🔭 Future Features ](#-future-features-)
-  - [🤝 Contributing ](#-contributing-)
+- [📖 About the Project](#about-project)
+  - [🛠 Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
+- [💻 Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+  - [Deployment](#triangular_flag_on_post-deployment)
+- [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
+- [❓ FAQ (OPTIONAL)](#faq)
+- [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 My SQL Project <a name="about-project"></a>
+# 📖 [your_project_name] <a name="about-project"></a>
 
-**My SQL Project** is a simple Database that uses SQL, Postgres via Supabase and R to create, query and secure a **Bookstore** database.
+> Describe your project in 1 or 2 sentences.
+
+**[your_project__name]** is a...
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
-- SQL
-- Postgres DB
+
+> Describe the tech stack and include only the relevant sections that apply to your project e.g SQL.
+
+<details>
+  <summary>Client</summary>
+  <ul>
+    <li><a href="https://reactjs.org/">Supabase</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary>Server</summary>
+  <ul>
+    <li><a href="https://expressjs.com/">SQL</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Database</summary>
+  <ul>
+    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+  </ul>
+</details>
 
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
-- [ ] **Tables**
-- [ ] **Schema**
-- [ ] **Access control**
+> Describe between 1-3 key features of the application.
+
+- **[key_feature_1]**
+- **[key_feature_2]**
+- **[key_feature_3]**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LIVE DEMO -->
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+> Add a link to your deployed project only if available.
+
+- [Live Demo Link](https://yourdeployedapplicationlink.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -46,137 +83,83 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To rebuild this DB, follow these steps.
+> Describe how a new developer could make use of your project.
+
+To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-To run this project, you need:
-- [A Supabase account](https://supabase.com/)
-- [Knowledge on SQL](https://www.w3schools.com/sql/)
-- A schema for creating your tables in the DB
+In order to run this project you need:
 
-<!-- ### Setup -->
+<!--
+Example command:
+
+```sh
+ gem install rails
+```
+ -->
+
 ### Setup
-
-Copy the contents of this Readme.md to your Project's file
-
-OR
 
 Clone this repository to your desired folder:
 
+<!--
+Example commands:
+
 ```sh
-  git clone https://github.com/joyapisi/readme-template-data
-  cd budget-app
+  cd my-folder
+  git clone git@github.com:myaccount/my-project.git
 ```
+--->
 
-<!-- ### DB Creation -->
+### Install
 
-### DB Schema
+Install this project with:
 
-- The DB is made up of 3 tables. Eaach table has 5 entries.
-- To create the table, you will need a schema as shown below:
+<!--
+Example command:
 
-```sql
--- Drop old tables if they exist
-DROP TABLE IF EXISTS orders CASCADE;
-DROP TABLE IF EXISTS customers CASCADE;
-DROP TABLE IF EXISTS books CASCADE;
-DROP TABLE IF EXISTS authors CASCADE;
-
--- Create authors table
-CREATE TABLE authors (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  country TEXT
-);
-
--- Create books table
-CREATE TABLE books (
-  id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  author_id INT REFERENCES authors(id),
-  price NUMERIC(8,2),
-  in_stock BOOLEAN DEFAULT true
-);
-
--- Create customers table
-CREATE TABLE customers (
-  id SERIAL PRIMARY KEY,
-  full_name TEXT NOT NULL,
-  email TEXT UNIQUE NOT NULL
-);
-
--- Create orders table
-CREATE TABLE orders (
-  id SERIAL PRIMARY KEY,
-  customer_id INT REFERENCES customers(id),
-  book_id INT REFERENCES books(id),
-  order_date TIMESTAMP DEFAULT now()
-);
-
--- Insert sample authors (5 rows)
-INSERT INTO authors (name, country) VALUES
-  ('Chinua Achebe', 'Nigeria'),
-  ('Ngũgĩ wa Thiong\'o', 'Kenya'),
-  ('Wole Soyinka', 'Nigeria'),
-  ('Nadine Gordimer', 'South Africa'),
-  ('Binyavanga Wainaina', 'Kenya');
-
--- Insert sample books (5 rows)
-INSERT INTO books (title, author_id, price, in_stock) VALUES
-  ('Things Fall Apart', 1, 1200.00, true),
-  ('Petals of Blood', 2, 1500.00, true),
-  ('Death and the King\'s Horseman', 3, 1800.00, true),
-  ('July\'s People', 4, 1300.00, false),
-  ('One Day I Will Write About This Place', 5, 1600.00, true);
-
--- Insert sample customers (5 rows)
-INSERT INTO customers (full_name, email) VALUES
-  ('Joy Phoebe', 'joy@example.com'),
-  ('Brian Otieno', 'brian@example.com'),
-  ('Aisha Ali', 'aisha@example.com'),
-  ('Peter Mwangi', 'peter@example.com'),
-  ('Grace Wanjiku', 'grace@example.com');
-
--- Insert sample orders (5 rows)
-INSERT INTO orders (customer_id, book_id) VALUES
-  (1, 1),
-  (1, 2),
-  (2, 3),
-  (3, 4),
-  (4, 5);
+```sh
+  cd my-project
+  gem install
 ```
+--->
 
-- The Tables should look like this in Supabase:
-authors
-<img width="1893" height="476" alt="image" src="https://github.com/user-attachments/assets/9a89f3ae-77d1-4ed2-a5c5-140db1e7e27b" />
+### Usage
 
-books:
-<img width="1881" height="445" alt="image" src="https://github.com/user-attachments/assets/d741319f-a0ff-416c-b50f-34c315c9af24" />
+To run the project, execute the following command:
 
-customers:
-<img width="1881" height="505" alt="image" src="https://github.com/user-attachments/assets/354752e6-fa32-4aa8-a28f-bf99f98039f2" />
+<!--
+Example command:
 
-orders:
-<img width="1902" height="517" alt="image" src="https://github.com/user-attachments/assets/fe99a68a-8950-4d87-82c1-25dcd3217a65" />
+```sh
+  rails server
+```
+--->
 
-- The ERD screenshot from Supabase looks like this: 
-<img width="1064" height="577" alt="image" src="https://github.com/user-attachments/assets/4b8a39b1-ff20-4bd3-be6f-f662b35ae49f" />
+### Run tests
 
-- To test the table, I used two queries: 
+To run tests, run the following command:
 
-```sql
-SELECT * FROM orders
-WHERE name = "Nadine Gordimer"
-````
+<!--
+Example command:
 
-```sql
-SELECT * FROM books
-WHERE in_stock = "TRUE"
-````
+```sh
+  bin/rails test test/models/article_test.rb
+```
+--->
 
-- Here are the results of the queries:
-<img width="1460" height="791" alt="image" src="https://github.com/user-attachments/assets/37cf0a4e-ca92-4d8d-8888-2cca0165d32b" />
+### Deployment
+
+You can deploy this project using:
+
+<!--
+Example:
+
+```sh
+
+```
+ -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -184,11 +167,19 @@ WHERE in_stock = "TRUE"
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Joy Phoebe**
+> Mention all of the collaborators of this project.
 
-- GitHub: [@joyapisi](https://github.com/joyapisi)
-- Twitter: [@joyphoebe300](https://twitter.com/joyphoebe300)
-- LinkedIn: [@joyapisi](https://linkedin.com/in/joyapisi)
+👤 **Author1**
+
+- GitHub: [@githubhandle](https://github.com/githubhandle)
+- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+
+👤 **Author2**
+
+- GitHub: [@githubhandle](https://github.com/githubhandle)
+- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -196,8 +187,11 @@ WHERE in_stock = "TRUE"
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add security**
-- [ ] **Link DB to R for visualisation purposes and further analyses**
+> Describe 1 - 3 features you will add to the project.
+
+- [ ] **[new_feature_1]**
+- [ ] **[new_feature_2]**
+- [ ] **[new_feature_3]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -212,3 +206,44 @@ Feel free to check the [issues page](../../issues/).
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- SUPPORT -->
+
+## ⭐️ Show your support <a name="support"></a>
+
+> Write a message to encourage readers to support your project
+
+If you like this project...
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+> Give credit to everyone who inspired your codebase.
+
+I would like to thank...
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FAQ (optional) -->
+
+## ❓ FAQ (OPTIONAL) <a name="faq"></a>
+
+> Add at least 2 questions new developers would ask when they decide to use your project.
+
+- **[Question_1]**
+
+  - [Answer_1]
+
+- **[Question_2]**
+
+  - [Answer_2]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
