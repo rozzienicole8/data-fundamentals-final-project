@@ -21,8 +21,7 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
-
-<!-- PROJECT DESCRIPTION -->
+-----
 
 #  Event Ticketing System <a name="about-project"></a>
 This project demonstrates how to **secure a database using Admin Roles, Row Level Security (RLS), and Supabase Auth**.  
@@ -35,10 +34,8 @@ This project focuses on **data access control**, **user roles**, and **safe data
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Describe the tech stack and include only the relevant sections that apply to your project e.g SQL.
-
 <details>
-  <summary> Backend </summary>
+  <summary>Backend as service</summary>
   <ul>
  <li><a href="https://supabase.com/">Supabase</a></li>
   </ul>
@@ -49,15 +46,15 @@ This project focuses on **data access control**, **user roles**, and **safe data
   <ul>
    <li><a href="https://www.postgresql.org/">PostgreSQL 15+</a></li>
 <details>
+
 <summary>Security</summary>
-   <ul>
-    <li>Row Level Security (RLS)</li>
-    <li>Role-Based Access Control (RBAC)</li>
-    <li>Supabase Auth</li>
-  </ul>
+<ul>
+<li>Row Level Security (RLS)</li>
+<li>Role-Based Access Control (RBAC)</li>
+<li>Supabase Auth</li>
+</ul>
 </details>
 
-<!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
