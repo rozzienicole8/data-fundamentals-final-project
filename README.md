@@ -42,11 +42,13 @@ This project focuses on **data access control**, **user roles**, and **safe data
 </details>
 
 <details>
-  <summary>Database</summary>
-  <ul>
-   <li><a href="https://www.postgresql.org/">PostgreSQL 15+</a></li>
-<details>
+<summary>Database</summary>
+<ul>
+<li><a href="https://www.postgresql.org/">PostgreSQL 15+</a></li>
+<ul>
 
+
+<details>
 <summary>Security</summary>
 <ul>
 <li>Row Level Security (RLS)</li>
@@ -57,8 +59,6 @@ This project focuses on **data access control**, **user roles**, and **safe data
 
 
 ### Key Features <a name="key-features"></a>
-
-> Describe between 1-3 key features of the application.
 - **🔐 Row Level Security (RLS) – Ensures users can only access their own tickets, events, or payments.**
 - **👥 Role-Based Access Control (RBAC) – Defines clear roles: Admin (full access) and User (limited access).**
 - **🛡️ Admin Functions – Includes secure PostgreSQL functions for admin-only actions like deleting or managing events.**
