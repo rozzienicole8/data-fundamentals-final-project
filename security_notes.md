@@ -143,7 +143,7 @@ $$;
 
 ```
 Purpose: get event statistics.
-```
+```sql
 CREATE OR REPLACE FUNCTION archive_old_events()
 RETURNS INT
 LANGUAGE SQL
