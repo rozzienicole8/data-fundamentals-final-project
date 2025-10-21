@@ -46,7 +46,7 @@ This project focuses on **data access control**, **user roles**, and **safe data
 <ul>
 <li><a href="https://www.postgresql.org/">PostgreSQL 15+</a></li>
 <ul>
-
+</details>
 
 <details>
 <summary>Security</summary>
