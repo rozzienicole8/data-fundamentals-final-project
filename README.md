@@ -111,50 +111,167 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
-<!--
-Example command:
+1. Execute the Database Schema
 
-```sh
-  cd my-project
-  gem install
-```
+- Open your Supabase project
+
+- Navigate to the SQL Editor
+
+- Copy and paste the entire contents of your schema.sql file
+
+- Run the SQL commands to create the tables
+
+2. Verify Table Creation
+
+- Go to the Table Editor in Supabase
+
+- Confirm you see the following tables:
+
+   -  users
+
+   - events
+
+   -  tickets
+
+   - payments
+
+- Ensure each table contains at least 5 rows of sample data
+
+3. Enable Authentication
+
+- Navigate to Authentication → Providers in Supabase
+
+- Enable Email/Password or Magic Link authentication
+
+- (Optional) Customize your email templates for sign-in and sign-up messages
+  
 --->
 
 ### Usage
+### 👤 For Regular Users:
 
-To run the project, execute the following command:
+- Sign up through Supabase Auth (Email or Magic Link)
+- A new record is automatically created in the users table with role = 'user'
+You can:
+- Browse and view available events
+- Purchase tickets for events
+- View your own tickets and payment history
+- You cannot view or edit other users’ data (protected by Row Level Security (RLS)
 
-<!--
-Example command:
+###  🛡️For Administrators:
+- Admins are users with role = 'admin' in the users table
+They can:
+- Manage all users, events, tickets, and payments
+- Add new events or update event details
+- Monitor all transactions
+- Run admin-only functions such as:
+```sql
+-- Delete any event
+SELECT delete_event('event-id-here');
 
-```sh
-  rails server
+-- Get event attendance summary
+SELECT * FROM get_event_statistics();
+
+-- Archive past events
+SELECT * FROM archive_old_events();
 ```
 --->
+  
+### 🧱 Database Structure
+### 🧍‍♂️ Users Table
 
-### Run tests
+|Column|Type|Description|
+|-----|-----|-----------|
+|id	|UUID|	Primary key|
+|email|TEXT	|User email (unique)|
+|full_name|	TEXT|	User’s full name|
+|role|	TEXT	|'admin' or 'user'|
+|created_at|	TIMESTAMP|	Record creation timestamp
+###  🎟️ Events Table
+|Column|	Type|	Description|
+|------|------|------------|
+|id	|UUID	|Primary key|
+|organizer_id|UUID|Foreign key referencing users|
+|event_name|TEXT|Name of the event|
+|description|TEXT|Event details|
+|location	|TEXT|Event location|
+|event_date|DATE|Date of the event|
+|event_time|TIME|Time of the event|
+|created_at|TIMESTAMP|Record creation timestamp|
+###  🎫 Tickets Table
+|Column	|Type	|Description|
+|-------|-----|-----------|
+|id|UUID|Primary key|
+|event_id|UUID|Foreign key referencing events|
+|user_id|	UUID|Foreign key referencing users|
+|status	|TEXT|'active', 'cancelled', or 'used'|
+|purchase_date|	TIMESTAMP	|When the ticket was purchased|
+### 💳 Payments Table
+|Column	|Type|	Description|
+|-------|----|-------------|
+|id|UUID|Primary key|
+|ticket_id|UUID|Foreign key referencing tickets|
+|amount|DECIMAL|Payment amount|
+|payment_status|TEXT|	'paid', 'pending', or 'failed'|
+|created_at|TIMESTAMP|	Payment timestamp|
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-To run tests, run the following command:
+ ###  🔐 Security Implementation <a name="security"></a>
 
-<!--
-Example command:
+This project uses Row Level Security (RLS) and Role-Based Access Control (RBAC) to ensure safe, restricted data access.
 
-```sh
-  bin/rails test test/models/article_test.rb
-```
---->
+## 👥 User Roles
 
-### Deployment
+Admin: Full access to all tables and admin-only functions
 
-You can deploy this project using:
+User: Can only access their own data (tickets, payments, and profile)
 
-<!--
-Example:
+### 🧩 Row Level Security Policies
+### Users Table Policies
 
-```sh
+✅ Users can view and update their own profiles (except role)
 
-```
- -->
+✅ Admins can view and manage all users
+
+### Events Table Policies
+
+✅ Organizers (users) can view and manage their own events
+
+✅ Admins have full access to all events
+
+### Tickets Table Policies
+
+✅ Users can view, purchase, and cancel their own tickets
+
+✅ Admins can view and manage all tickets
+
+### Payments Table Policies
+
+✅ Users can view their own payment history
+
+✅ Admins can view and manage all payments
+
+### ⚙️ Admin-Only Functions
+
+1. delete_event(event_id UUID)
+
+- Deletes any event regardless of ownership
+
+- Uses SECURITY DEFINER for elevated privileges
+
+2. get_event_statistics()
+
+- Returns event attendance and ticket sales summaries
+
+- Useful for admin dashboards
+
+3. archive_old_events()
+
+- Archives past events older than a specific date
+
+- Returns the count of archived events
+
+ 📄 For more details, see `security_notes.md` 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
