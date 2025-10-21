@@ -4,12 +4,13 @@
 -- ============================================
 
 -- USERS TABLE
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
   phone VARCHAR(20),
-  role VARCHAR(20) DEFAULT 'user',  -- Added role column ('admin' or 'user')
+  role TEXT DEFAULT 'user''admin',
+  auth_id UUID UNIQUE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
