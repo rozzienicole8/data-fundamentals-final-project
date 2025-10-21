@@ -125,6 +125,48 @@ $$;
 Purpose: This ensures only admins can permanently delete event records.
 Security Definer: Executes with the privileges of the function owner (admin).
 
+
+```sql
+CREATE OR REPLACE FUNCTION get_event_statistics()
+RETURNS TABLE(event_name TEXT, total_tickets INT, total_sales NUMERIC)
+LANGUAGE SQL
+SECURITY DEFINER
+AS $$
+  SELECT e.event_name,
+         COUNT(t.id) AS total_tickets,
+         COALESCE(SUM(p.amount), 0) AS total_sales
+  FROM events e
+  LEFT JOIN tickets t ON e.id = t.event_id
+  LEFT JOIN payments p ON t.id = p.ticket_id
+  GROUP BY e.event_name;
+$$;
+
+```
+Purpose: get event statistics.
+```
+CREATE OR REPLACE FUNCTION archive_old_events()
+RETURNS INT
+LANGUAGE SQL
+SECURITY DEFINER
+AS $$
+  WITH archived AS (
+    UPDATE events
+    SET status = 'archived'
+    WHERE event_date < NOW() - INTERVAL '90 days'
+    RETURNING *
+  )
+  SELECT COUNT(*) FROM archived;
+$$;
+```
+purpose: archive old events.
+
+### References
+
+- [PostgreSQL Row Level Security Documentation](https://www.postgresql.org/docs/current/ddl-rowsecurity.html)
+- [Supabase RLS Guide](https://supabase.com/docs/guides/auth/row-level-security)
+- [Supabase Auth Documentation](https://supabase.com/docs/guides/auth)
+
+PostgreSQL SECURITY DEFINER Functions
 5. Summary
 -----------------------
 | Table                              | Regular User Access       | Admin Access |
