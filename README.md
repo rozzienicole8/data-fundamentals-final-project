@@ -24,11 +24,12 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [your_project_name] <a name="about-project"></a>
+#  Event Ticketing System <a name="about-project"></a>
+This project demonstrates how to **secure a database using Admin Roles, Row Level Security (RLS), and Supabase Auth**.  
+It builds upon the **Event Ticketing System** created in the **Data Tools Final Project** — extending it with real security features.
 
-> Describe your project in 1 or 2 sentences.
-
-**[your_project__name]** is a...
+The system manages **users, events, tickets, and payments**, allowing users to buy tickets while admins manage events and oversee all data.  
+This project focuses on **data access control**, **user roles**, and **safe database management**.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -37,23 +38,22 @@
 > Describe the tech stack and include only the relevant sections that apply to your project e.g SQL.
 
 <details>
-  <summary>Client</summary>
+  <summary> Backend </summary>
   <ul>
-    <li><a href="https://reactjs.org/">Supabase</a></li>
+ <li><a href="https://supabase.com/">Supabase</a></li>
   </ul>
 </details>
 
 <details>
-  <summary>Server</summary>
+  <summary>Database</summary>
   <ul>
-    <li><a href="https://expressjs.com/">SQL</a></li>
-  </ul>
-</details>
-
+   <li><a href="https://www.postgresql.org/">PostgreSQL 15+</a></li>
 <details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+<summary>Security</summary>
+   <ul>
+    <li>Row Level Security (RLS)</li>
+    <li>Role-Based Access Control (RBAC)</li>
+    <li>Supabase Auth</li>
   </ul>
 </details>
 
@@ -62,53 +62,48 @@
 ### Key Features <a name="key-features"></a>
 
 > Describe between 1-3 key features of the application.
-
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-> Add a link to your deployed project only if available.
-
-- [Live Demo Link](https://yourdeployedapplicationlink.com)
+- **🔐 Row Level Security (RLS) – Ensures users can only access their own tickets, events, or payments.**
+- **👥 Role-Based Access Control (RBAC) – Defines clear roles: Admin (full access) and User (limited access).**
+- **🛡️ Admin Functions – Includes secure PostgreSQL functions for admin-only actions like deleting or managing events.**
+- **🎟️ Organized Database Design – Features well-structured tables for users, events, tickets, and payments.**
+- **🔒 Least Privilege Principle – Applies strict permissions so each role only has access to what it needs.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
+To get a local copy up and running, follow these steps:
 
-To get a local copy up and running, follow these steps.
+### 🪜 Step 1: Set Up Supabase
+
+1. Go to [Supabase Dashboard](https://app.supabase.com/)
+2. Create a **new project**
+3. Open the **SQL Editor**
+4. Copy and paste your schema from `schema.sql` (from your Event Ticketing System)
+5. Run the SQL to create all tables (`users`, `events`, `tickets`, `payments`)
+
+---
+
 
 ### Prerequisites
 
 In order to run this project you need:
+- A [Supabase](https://supabase.com/) account (free tier available works perfectly)
+- Basic understanding of SQL and PostgreSQL
+- A SQL client or the Supabase SQL Editor
 
-<!--
-Example command:
-
-```sh
- gem install rails
-```
- -->
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-<!--
-Example commands:
-
 ```sh
   cd my-folder
-  git clone git@github.com:myaccount/my-project.git
+  git clone https://github.com/rozzienicole8/data-fundamentals-final-project
 ```
 --->
 
